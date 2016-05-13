@@ -3,9 +3,13 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <div style="width: 700px; margin: auto">
+    <h1>Welcome to Meteor!</h1>
 
-  {{> info}}
+    {{> hello}}
+    {{> createTrip}}
+    {{> createClient}}
+  </div>
 </body>
 
 <template name="hello">
@@ -15,7 +19,19 @@
   <ul>
     My Clients:
     {{#each client in clients}}
-      <li>{{client.first_name}}, {{client.last_name}}, {{client.search_strings}}</li>
+      <li>{{client.name}}, {{client.search_strings}}</li>
     {{/each}}
   </ul>
+</template>
+
+<template name="createClient">
+  <div style="width: 500px">
+    <h2>Create client</h2>
+    {{> quickForm collection=Clients id="insertClientForm" type="insert"}}
+  </div>
+</template>
+
+<template name="createTrip">
+  <h2>Create trip</h2>
+  {{> quickForm collection=Trips id="insertTripForm" type="insert"}}
 </template>

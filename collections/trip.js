@@ -1,7 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { ClientBase } from './client';
 
-export const Trips = new Mongo.Collection('trips');
+const Trips = new Mongo.Collection('trips');
 
 const TripsSchema = new SimpleSchema({
     destination: {type: String},
@@ -11,10 +12,14 @@ const TripsSchema = new SimpleSchema({
         autoform: {
             type: "toic-picker",
             afFieldInput: {
-              collection: 'Clients',             // Collection name
-              choose: () => ()=> "#{this.name}"  // What you want to see as a label of select. Yes, it's function as a parametr for other function.
+              collection: 'clients',
+              class: ()=> ClientBase,
+              choose: ()=> function () { return this.name } // What you want to see as a label of select. Yes, it's function as a parametr for other function.
             }
         }
     }
 });
 
+Trips.attachSchema(TripsSchema);
+
+export default Trips;

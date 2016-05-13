@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import searchIn from 'meteor/chompomonim:search-in';
-import { Clients } from '../collections/client'
+import searchIn from 'meteor/nous:search-in';
+import Clients from '../collections/client'
 
 Meteor.startup(() => {
     searchIn.register(Clients, function () {

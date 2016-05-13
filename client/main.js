@@ -1,8 +1,11 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Clients } from '../collections/client';
-
+import Clients from '../collections/client';
+import Trips from '../collections/trip';
 import './main.html';
+
+Template.registerHelper("Clients", Clients);
+Template.registerHelper("Trips", Trips);
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
